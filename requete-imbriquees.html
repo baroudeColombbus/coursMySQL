@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL cours - Requêtes imbriquées</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link" href="requete-d_insertion.html">insert</a>
+					<a class="nav-link active" href="requete-update.html">update & DELETE</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <div class="container bg-light">
+        <!-- ========================================= -->
+			<!-- Carousel -->
+			<!-- ========================================= -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h class="text-center">Les requêtes avec MySQL</h>
+                </div><!-- /col -->
+            </div><!-- /col -->
+
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <h2>Création de la BDD bibliotheque</h2>
+                    <p>En SQL : <code>CREATE DATABASE IF NOT EXISTS bibliotheque CHARACTER SET 'utf8' </code></p>
+                    <p>Quels sont les sujets ?</p>
+                    <ul>
+                        <li>Des livres</li>
+                        <li>Des abonnés</li>
+                        <li>Des emprunts</li>
+                    </ul>
+                </div><!-- /col -->
+                <div class="col-sm-12 col-md-4">
+                    <p>Création de la table abonne</p>
+                    <code>
+                        CREATE TABLE  IF NOT EXISTS abonne ( <br>
+                            id_abonne INT(3) NOT NULL AUTO_INCREMENT,<br>
+                            prenom VARCHAR(20) NOT NULL,<br>
+                            PRIMARY KEY (id_abonne)) ENGINE=innoDB;
+                    </code>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <p>Création de la table livre </p>
+                    <code>
+                        CREATE TABLE IF NOT EXISTS livre ( <br>
+                            id_livre INT(3) NOT NULL AUTO_INCREMENT, <br>
+                            auteur VARCHAR(30) NOT NULL, <br>
+                            titre VARCHAR(30) NOT NULL, <br>
+                            PRIMARY KEY (id_livre))ENGINE=innoDB;
+                    </code>
+                </div><!-- /col -->
+                <div class="col-sm-12 col-md-4">
+                    <p>Création de la table emprunt</p>
+                    <code>
+                        CREATE TABLE IF NOT EXISTS emprunt (
+                            id_emprunt INT(3) NOT NULL AUTO_INCREMENT,
+                            id_livre INT(3) DEFAULT NULL,
+                            id_abonne INT(3) DEFAULT NULL,
+                            auteur VARCHAR(30) NOT NULL, 
+                            date_sortie DATE NOT NULL,
+                            date_rendu DATE DEFAULT NULL,
+                            PRIMARY KEY (id_emprunt))ENGINE=innoDB;
+                    </code>
+                </div><!-- /col -->
+                <!-- new col -->
+                <div class="col-sm-12 col-md-4">
+                    <p>Création des clefs étrangères</p>
+                    <p>Créations des clefs étrangères, ajouter 2 clefs étrangères à la table des emprunts en disant de quelle table, et dans quelle base elles proviennent.</p>
+                    <code>
+                        ALTER TABLE emprunt ADD FOREIGN KEY (id_livre) REFERENCES bibliotheque.livre (id_livre);
+                        ALTER TABLE emprunt ADD FOREIGN KEY (id_abonne) REFERENCES bibliotheque.abonne (id_abonne);
+                    </code>
+
+                </div><!-- /col -->
+                <div class="col-sm12 col-md-4">
+                    <p>Insertions</p>
+
+                </div>
+                <div class="col-sm12 col-md-4">
+                    <p>Les umprunts</p>
+                    <code>
+                        INSERT INTO emprunt (id_emprunt, id_livre, id_abonne, date_sortie, date_rendu) VALUES <br>
+                            (1, 100, 1, '2014-12-17', '2014-12-18'),<br>
+                            (2, 101, 2, '2014-12-18', '2014-12-20'),<br>
+                            (3, 100, 3, '2014-12-19', '2014-12-22'),<br>
+                            (4, 103, 4, '2014-12-19', '2014-12-22'),<br>
+                            (5, 104, 1, '2014-12-19', '2014-12-28'),<br>
+                            (6, 105, 2, '2015-03-20', '2015-03-26'),<br>
+                            (7, 105, 3, '2015-06-13', NULL),<br>
+                            (8, 100, 2, '2015-06-15', NULL);
+                    </code>
+                </div>
+            </div><!-- /row -->
+            <hr>
+            <!-- new row -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>SELECT sur plusieurs tables</h2>
+                </div><!-- /col -->
+                <div class="col-sm-12">
+                    <p></p>
+                    <ul>
+                        <li>SELECT * FROM abonne ;</li>
+                        <li>SELECT * FROM livre ;</li>
+                        <li>SELECT * FROM emprunt;</li>
+                        <li>On cherche les livres non encore rendu : et on utilise IS, la valeur NULL se teste avec IS <code>SELECT titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL )</code> et on utilise le mot-clef IN et non pas le signe égal(=) car plusieurs résultats seront renvoyés. Le champ id_livre est utilisé pour faire "joindre" les informations de la table livre et de la table emprunt...</li>
+                        <li>Le nombre de livre que Chloé à emprunter à la bibliotheque <code>SELECT titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne = (SELECT id_abonne FROM abonne WHERE prenom ='Chloe'));</code></li>
+                        <li>L'id des livres que Chloé <code>...</code></li>
+                        <li>Le prénom des abonnés ayant emprunté un livre le 19-12-2014 : <code>SELECT id_abonne, prenom FROM abonne WHERE id_abonne IN (SELECT id_abonne FROM emprunt WHERE date_sortie='2014-12-19') </code></li>
+                        <li>Afficher la liste des abonnées ayant emprunté le livre d'alphonse: <code>SELECT prenom from abonne where id_abonne in (select id_abonne From emprunt where id_livre in (select id_livre from livre where auteur = 'alphonse daudet'));</code></li>
+                        <li>Les titres des livres que Chloé a emprunté à la bibliothèque : <code> SELECT id_livre FROM emprunt WHERE id_abonne = (SELECT id_abonne FROM abonne WHERE prendre = 'Chloé')</code></li>
+                        <li>Afficher les titres des livres que Chloé n'a pas emprunté à la bibliothèque : <code>SELECT titre FROM livre WHERE id_livre NOT IN (SELECT id_livre FROM emprunt WHERE id_abonne = (SELECT id_abonne FROM abonne WHERE prenom = 'Chloé'));</code></li>
+                        <li> Afficher les titres des livres que Chloé n'a pas encore rendu à la bibliothèque : <code>SELECT prenom AS 'prenom_abonne', titre FROM livre WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL AND id_abonne = (SELECT id_abonne FROM abonne WHERE prenom = 'Chloé'));</code></li>
+                        <li>Combien de livre guillaume a emprunté ?<code>SELECT COUNT(*) FROM emprunt WHERE id_abonne = (SELECT id_abonne FROM abonne WHERE prenom = 'guillaume');</code></li>
+                    </ul>
+
+                </div><!-- /col -->
+            </div><!-- /row -->
+    
+    
+
+		
+    </div><!--container-->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

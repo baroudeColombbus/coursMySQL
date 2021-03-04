@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours MySQL</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.html">Accueil</a>
+					<a class="nav-link active" href="#">Requêtes</a>
+					<a class="nav-link" href="#">Menu 2</a>
+					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Menu 3 - Disabled</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- ============================================================== -->
+	<!-- Contenu principal -->
+	<!-- ============================================================== -->
+
+	<div class="container mt-2 bg-light">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center jumbotron bg-info">Les requête MySQL</h1>
+            </div><!-- /col -->
+        </div><!-- /row -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>1-Crée une BDD : <code>CREATE DATABASE basetest CHARACTER SET 'utf8';</code></h2>
+            </div><!-- /col -->
+        </div><!-- /row -->
+        <!-- new row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <ul>
+                    <li>Créer une BDD <code>CREATE DATABASE</code></li>
+                    <li>Utiliser <code>USE DATABASE NAME</code></li>
+                    <li>Supprimer une BDD <code>DROP DATABASE IF EXISTS basetest;</code></li>
+                    <li> <code>CREATE DATABASE enterprise CHARACTER SET 'utf8'</code></li>
+                    <li>Créer une table dans la base 'enterprise' :  
+                        <code>
+                            CREATE TABLE IF NOT EXISTS employes (
+                                id_employes int(3) NOT NULL AUTO_INCREMENT,
+                                prenom varchar(20) DEFAULT NULL, 
+                                nom varchar(20) DEFAULT NULL, 
+                                sexe enum('m','f') NOT NULL,
+                                service varchar(30) DEFAULT NULL, 
+                                date_embauche date DEFAULT NULL, 
+                                salaire float DEFAULT NULL, 
+                                PRIMARY KEY (id_employes)
+                            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+                        </code></li>
+                    <li>Insérer des données dans la table 'employes' <code>
+                        INSERT INTO employes (id_employes, prenom, nom, sexe, service, date_embauche, salaire) VALUES
+                        (350, 'Jean-pierre', 'Laborde', 'm', 'direction', '1999-12-09', 5000),
+                        (388, 'Clement', 'Gallet', 'm', 'commercial', '2000-01-15', 2300),
+                        (415, 'Thomas', 'Winter', 'm', 'commercial', '2000-05-03', 3550),
+                        (417, 'Chloe', 'Dubar', 'f', 'production', '2001-09-05', 1900),
+                        (491, 'Elodie', 'Fellier', 'f', 'secretariat', '2002-02-22', 1600),
+                        (509, 'Fabrice', 'Grand', 'm', 'comptabilite', '2003-02-20', 1900),
+                        (547, 'Melanie', 'Collier', 'f', 'commercial', '2004-09-08', 3100),
+                        (592, 'Laura', 'Blanchet', 'f', 'direction', '2005-06-09', 4500),
+                        (627, 'Guillaume', 'Miller', 'm', 'commercial', '2006-07-02', 1900),
+                        (655, 'Celine', 'Perrin', 'f', 'commercial', '2006-09-10', 2700),
+                        (699, 'Julien', 'Cottet', 'm', 'secretariat', '2007-01-18', 1390),
+                        (701, 'Mathieu', 'Vignal', 'm', 'informatique', '2008-12-03', 2000),
+                        (739, 'Thierry', 'Desprez', 'm', 'secretariat', '2009-11-17', 1500),
+                        (780, 'Amandine', 'Thoyer', 'f', 'communication', '2010-01-23', 1500),
+                        (802, 'Damien', 'Durand', 'm', 'informatique', '2010-07-05', 2250),
+                        (854, 'Daniel', 'Chevel', 'm', 'informatique', '2011-09-28', 1700),
+                        (876, 'Nathalie', 'Martin', 'f', 'juridique', '2012-01-12', 3200),
+                        (900, 'Benoit', 'Lagarde', 'm', 'production', '2013-01-03', 2550),
+                        (933, 'Emilie', 'Sennard', 'f', 'commercial', '2014-09-11', 1800),
+                        (990, 'Stephanie', 'Lafaye', 'f', 'assistant', '2015-06-02', 1775);
+                    </code></li>
+                    <li>Afficher les noms et prénoms de employés  <code>SELECT nom, prenom FROM employes</code></li>
+                    <li>Afficheer les services occupés <code>SELECT DISTINCT(service) FROM employes </code></li>
+                    <li>Afficher <code></code></li>
+                    <li> <code></code></li>
+                </ul>
+                <h3>Le mot DISCTINCT</h3>
+                <ul>
+                    <li>Afficher les services occupés dans l'entreprise : <code>SELECT service FROM employes </code></li>
+                    <li>Eviter les doublons grâce à DISTINCT <code>SELECT DISTINCT(service) FROM employes </code>; le mot clef DISTINCT permet d'éviter les doublons</li>
+                </ul>
+
+                <h3>Les requêtes  ne sont pas sensibles à la casse, mais !!!</h3>
+                <p>Une convention indique qu'il faut mettre les mots-clefs des requêtes en majuscule</p>
+                <ul>
+                    <li>Ces deux requêtes sont identiques : * = all, tout</li>
+                    <li>SELECT id_employes, prenom, nom, sexe etc... FROM employes</li>
+                    <li>SELECT * FROM employes</li>
+                </ul>
+                <h3>Les conditions : le mot-clef WHERE</h3>
+                <P>Nous cherchons avec une condition une partie des données</P>
+                <p>Affiche-moi le nom et le prénom de la table des employés à condition que les employés</p>
+
+                <ul>
+                    <li><code></code></li>
+                </ul>
+
+                <h3>Le mot-clef</h3>
+                <p>Afficher les employés ayqnt été recrutés entre 2006 et 2010</p>
+                <ul>
+                    <li>SELECT *FROM  employes WHERE data_embauche BETWEEN '2006-01-01' AND '2010-12-31'; </li>
+                    <li>SELECT nom, prenom, date_embauche BETWEEN '2006-01-01' AND '2010-12-31';</li>
+                    <li>Dans une BDD la date est au format états_unien ANNEE-MOIS-JOUR//2021-01-12</li>
+                    <li>Une requête donnes la date du jour <code>SELECT CURDATE()</code></li>
+                    <li>Entre</li>
+                </ul>
+
+                <h3>Le mot-clef LIKE</h3>
+                <p>Afficher les employés dont le prénom commence par s</p>
+                <p>Avec la présence des signes pourcentages avant et après la lettre ou le mot recherché, nous demandons au systmème de trouver des enregestritements contenant l'expression recherchée.</p>
+                <ul>
+                    <li> <code>SELECT nom, prenom FROM employes WHERE prenom LIKE 's%';</code></li>
+                    <li><code>SELECT * FROM employes WHERE prenom LIKE %s</code></li>
+                    <li><code>SELECT * FROM employes WHERE prenom LIKE s%c</code></li>
+                    <li>Trouve<code>SELECT * FROM employes WHERE prenom LIKE %s%</code></li>
+                    <li>Trouve les prenoms ayant le trait d'union<code>SELECT * FROM employes WHERE prenom LIKE %-%</code></li>
+                    
+                </ul>
+
+            </div><!-- /col -->
+
+        </div><!-- /row -->
+        <!-- new row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>5- Les opérateurs de comparaison</h2>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <table class="table table-striped mx-auto">
+                    <thead>
+                      <tr>
+                        <th scope="col">Opérateur</th>
+                        <th scope="col">Symbole</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">=</th>
+                        <td>est égal</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">&gt;</th>
+                        <td>strictement supérieur</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">&lt;</th>
+                        <td>strictement inférieur</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">&gt;=</th>
+                        <td>supérieur ou égal</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">&lt;=</th>
+                        <td>inférieur ou égal</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">&lt; &gt; ou !=</th>
+                        <td>est différent</td>
+                      </tr>
+                    </tbody>
+        </table>
+
+            </div><!-- /col -->
+
+            <!-- new col -->
+            <div class="col-sm-12">
+                <h3>L'opérateur</h3>
+            <ul>
+                <li>Tous les employés qui ne sont pas au service informatique <code>SELECT * FROM employes WHERE service != 'informatique';</code> </li>
+            </ul>
+
+            <h3>L'opérateur &gt;</h3>
+
+            <ul>
+                <li>Tous les employés gagant plus de 3000 euros <code>SELECT nom, prenom, salaire FROM employes WHERE salaire > 3000;</code></li>
+            </ul>
+            </div><!-- /col -->
+        </div><!-- /row -->
+
+        <!-- new row -->
+        <div class="row">
+            <div class="col sm-12">
+                <h2>6- Le classement avec ORDER BY</h2>
+                <ul>
+                    <li>Les employés triés par nom de famille et par ordre alaphabétique <code>SELECT nom,prenom, salaire FROM employes ORDER BY nom ASC;</code></li>
+                    <li>Avec ou sans ASC la requête est la même par default SQL tri du plus petit au plus grand </li>
+                    <li>En ordre descendant ou décroissant <code>DESC</code></li>
+                    <li>Trier sur plusieurs colonnes : <Code>SELECT service,nom,prenom, salaire FROM employes ORDER BY service ASC, salaire ASC;</Code></li>
+                </ul>
+            </div><!-- /col -->
+        </div><!-- /row -->
+        <!-- new row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>7- Limiter les résultats avec les mot-clef LIMIT</h2>
+            </div><!-- col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>Afficher les employés en les classant par salaire (du + grand au plus petit)et en les affichant par 3<code> SELECT * FROM employes ORDER BY salaire DESC LIMIT 0,3;</code></li>
+                    <li>Le premier chiffre précise l'enregistrement de départ(0 définit le 1er enregistrement en informatique) le 2nd chiffre nous indique le nombre de résultats que l'on souhaite obtenir </li>
+                    <li>Autre ex : <code>SELECT, nom,prenom, service, salaire FROM employes ORDER BY salaire DESC LIMIT 6,3</code></li>
+                    <li>Le mot-clef ou la clause LIMIT est utile pour faire une pagination web</li>
+                </ul>
+            </div><!-- /col -->
+        </div><!-- /row -->
+        <!-- new row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>8- Réaliser les calculs</h2>
+
+            </div><!-- /col -->
+            <!-- new row -->
+            <div class="col-sm-12">
+                <ul>
+                    <li><code>SELECT nom, prenom, salaire,salaire*12  as salaire_annuel FROM employes ORDER BY salaire DESC;</code></li>
+                    <li>Le mot-clef AS permet de définir un alias</li>
+                </ul>
+            </div><!-- /col -->
+            <!-- new col -->
+            <div class="col-sm-12">
+                <h3>Calculer une somme avec SUM(), et une moyenne avec AVG()</h3>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>SUM() faire une somme, addition : <code>SELECT SUM(salaire*12) FROM employes;</code></li>
+                    <li>AVG() faire la moyenne annuelle (average) : <code>SELECT AVG(salaire*12) FROM employes;</code></li>
+                </ul>
+            </div><!-- /col -->
+
+            <!-- new -->
+            <div class="col-sm-12">
+                <h3>Arrondir avec ROUND</h3>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>Arrondir un calcul : <code>SELECT ROUND( AVG(salaire*12))FROM employes;</code></li>
+                    <li>SELECT ROUND( AVG(salaire))AS salaire_mensuel_arrondie FROM employes;</li>
+                </ul>
+            </div><!-- /col -->
+        </div><!-- /row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <ul>
+                    <li>Combien il y a de femme : <code>SELECT COUNT(*) FROM employes WHERE sexe='m';</code></li>
+                </ul>
+            </div><!-- /col -->
+        </div><!-- / col -->
+        <!-- new row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Isoler une valeur minimum/maximum avec MIN() ou MAX()</h2>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <li>Trouver le salaire minimum : <code>SELECT MIN(salaire) FROM employes;</code></li>
+                <li>Trouver le salaire maximum : <code>SELECT MAX(salaire) FROM employes;</code></li>
+                <li>Par contre cette requête ne fonctionnera pas : <code>SELECT prenom, MIN(salaire) FROM employes;</code>, pour trouver le salaire le plus bas et la personne qui gagne ce salaire il faut écrire 
+                    <code>SELECT prenom, salaire FROM employes WHERE salaire = (SELECT MIN(salaire) FROM employes);</code> : Le système va d'abord d'exécuter la requête entre parenthèse pour connaître le résultat et l'utiliser comme source pour l'autre requête</li>
+                <li>Trouver qui gagne le plus : <code> SELECT nom, prenom FROM employes WHERE salaire = (SELECT Max(salaire) FROM employes);</code></li>
+                <li>>Trouver qui gagne moins : <code> SELECT nom, prenom FROM employes WHERE salaire = (SELECT MIN(salaire) FROM employes);</code> on appelle cela une requête imbriqué</li>
+                <li>Trouver les employes qui gagne <code>SELECT nom, prenom,salaire FROM employes WHERE salaire = 1390;</code></li>
+            </div><!-- /col -->
+        </div><!-- /row -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Condition IN avec plusieurs valeurs</h2>
+            </div>
+            <div class="col-sm-12">
+                <ul>
+                    <li>Trouver les employes à la comptabilité et au service informatique : <code>SELECT nom, prenom, service FROM employes WHERE service IN('compabilite', 'informatique');</code></li>
+                    <li>Salaire horaire<code>SELECT nom, prenom, salaire, salaire/150 AS salaire_heure FROM employes ORDER BY salaire_heure ASC;</code></li>
+                    <li> = (égal) permet d'annoncer 1 seule valeur</li>
+                    <li>IN permet d'annoncer plusieurs valeurs</li>
+                </ul>
+            </div>
+        </div><!-- /row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Conditions multiples, différent champs et valeurs</h2>
+            </div><!-- / col-->
+
+            <div class="col-sm-12">
+                <ul>
+                    <li>Les employes qui travaillent au service commercial et qui gagne un salaire inférieur ou égal à 2000 euros <br><code> SELECT nom, prenom, salaire, service FROM employes WHERE service = 'commercial' AND salaire &lt;= 2000</code></li>
+                </ul>
+            </div><!-- / col-->
+        </div><!-- / row-->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Ordre de priorité sur les conditions AND et OR</h3>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>Lorsqu'il y a AND et OR au sein de la même requête, le systmème lit la condition de la droite vers la gauche</li>
+                </ul>
+            </div><!-- /col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li><code>SELECT nom, prenom, salaire FROM employes WHERE salaire IN (1900, 2300) AND service='production'; </code></li>
+                    <li>Pour garantir l'ordre naturel de lecture (de la gauche vers la droite) on utilisera les paramthèse <br> <code>SELECT prenom, nom, service, salaire FROM employes WHERE service='production' AND (salaire=1900 OR salaire=2300);</code></li>
+                </ul>
+            </div><!--/col  -->
+        </div><!-- /row -->
+        <!-- new -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Les regroupement avec GROUP BY</h2>
+            </div><!--  -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>Si on veut connaître le nombre d'employés par service : <code> SELECT service, COUNT(*) AS nombre_employe FROM employes GROUP BY service</code></li>
+                </ul>
+            </div><!-- /col -->
+
+            <!-- new col -->
+            <div class="col-sm-12">
+                <h3>Utilisation de mot mot-clef HAVING, ayant</h3>
+            </div><!-- /col -->
+            <!-- new col -->
+            <div class="col-sm-12">
+                <ul>
+                    <li>On impose une condition COUNT et HAVING <code>SELECT service, COUNT(*) AS nombre_employe FROM employes GROUP BY service HAVING COUNT(*);</code></li>
+                </ul>
+
+            </div><!-- /col -->
+        </div><!-- row -->
+
+
+
+    </div><!--container-->
+
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

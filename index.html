@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link" href="#">Menu 2</a>
+					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Menu 3 - Disabled</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <div class="container bg-light">
+        <!-- ========================================= -->
+			<!-- Carousel -->
+			<!-- ========================================= -->
+			<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+				  <div class="carousel-item active">
+					  <img src="img/sql.jpg" class="d-block w-100" alt="...">
+				  </div>
+				  <div class="carousel-item">
+					<img src="img/php.jpg" class="d-block w-100" alt="...">
+				  </div>
+				  <div class="carousel-item">
+					<img src="img/pma.jpg" class="d-block w-100" alt="...">
+				  </div>
+				</div>
+			  </div><!-- fin carousel -->
+	
+    </div><!-- /container -->
+
+	<!-- ============================================================== -->
+	<!-- Contenu principal -->
+	<!-- ============================================================== -->
+
+	<div class="container mt-2">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center text-primary">MYSQL</h1>
+            </div>
+        </div><!--fin row-->
+        <div class="row mt-5">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <h2 class="bg-info text-white">MYSQL</h2>
+                <ul>
+                    <li>MySQL peut s'utiliser en ligne de commande (Shell, Bash ou CMDR et le terminal) ou avec une interface graphique (php MyAdmin)</li>
+                    <li>Pour se connecter à MySQL en ligne de commande on utilise <code>mysql -u utilisateur -p</code></li>
+                </ul>
+                <p><a class="btn btn-success" href="https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1959969-installez-mysql" role="button" target="_blank">+ sur la ligne de cmd</a></p>
+            </div><!--fin col-->
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <h2 class="bg-info text-white">SGBDR / SGBD</h2>
+                <ul>
+                    <li>Un système qui permet de gérer une BDD /// CRUD create, read, update, delete</li>
+                    <li>Le logiciel client permet de dialoguer avec le serveur avec le langage SQL</li>
+                    <li>Date de naissance 1994</li>
+                    <li>Open Source</li>
+                    <li>Concurrents : Oracle, MS Access SQLite PostgreSQL</li>
+                    <li>----</li>
+                    <li>MCD = Modèle Conceptuel de Données</li>
+                    <li>SGBD = Systéme de Gestion de Base de Données</li>
+                    <li>BDD = Base De Données</li>
+                    <li>DB = Data Base en anglais</li>
+                    <li>SQL = Structured Query Langage</li>
+                </ul>
+            </div><!--fin col-->
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <h2 class="bg-info text-white">En résumé</h2>
+                <ul>
+                    <li>MySQL est un <abbr>SGBDR</abbr> <strong>Système de Gestion de Base de Données Relationnelles</strong></li>
+                    <li>Le langage SQL est utilisé pour la communication entre le client et le serveur</li>
+                    <li>Dans une BDD les données sont représentées sous forme de tables</li>
+                    <li>Dans une table nous avons des colonnes, chaque données sera introduite sous forme de ligne dans la table</li>
+                </ul>
+            </div><!--fin col-->
+        </div><!--fin row-->
+		<!-- new row -->
+		<div class="row mt-2">
+			<h2 class="text-primary">1- Modélisation d'une BDD</h2>
+			<div class="col-sm-12">
+				<p>Avant de créer une base de données, il est essentiel de se poser et de réfléchir sur la modélisation. C'est la raison pour laquelle il vaut mieux éviter de se tromper.
+					<br>	Rien est irréversible, mais changer la modélisation d'une base de données en cours de projet n'est pas recommandé car cela forcera certainement à réécrire
+					une bonne partie du code (script) ce qui peux prendre énormément de temps et entrainer des conséquences telles qu'un déréglement d'autres parties de
+					l'application.
+					Comment modéliser une base de données ? >>>
+					</p>
+			</div><!-- /col -->
+			<!-- new col -->
+			<div class="col-sm-12">
+				<p>Nous pouvons modéliser sur papier si celle-ci n'est pas complexe mais dans la plupart des cas nous aurons besoin d'un logiciel pour nous accompagneret avoir une vue d'ensemble.Un logiciel connu permet de modéliser une base de données : <a href="https://www.mysql.com/fr/products/workbench/" title="MySQL Workbench" target="_blank">Mysql WorkBench</a>. D'autres outils et logiciels performant existent. Pour une bonne conception de sa base de données, il faut réfléchir en terme de sujet en modélisant ceux du monde réél.La modélisation se compose de différentes tables (table = sujet).Par exemple, si nous vendons des produits sur notre site, nous aurons 1 table produit, mais aussi 1 table commande.</p>
+			</div><!-- /col -->
+		</div><!-- /row -->
+		<!-- new row -->
+		<div class="row">
+			<h2 class="text-primary">2- Les tables</h2>
+			<div class="col-sm-12">
+				<ul class="border border-success">
+					<li>1 sujet représente 1 table dans une base de données. </li>
+					<li>1 table est un emplacement de sauvegarde.</li>
+					<li>Les données sont stockées à l'intérieur de tables. Une table peut être comparée à une liste, qui contient des enregistrements relatifs à un sujet bien défini.</li>
+				</ul>
+			</div><!-- /col -->
+
+			<!-- new col -->
+			<div class="col-sm-12">
+				<p>Il faut réfléchir au sujet et à ses conséquences. Si nous vendons des produits, nous aurons certainement des membres. 1 table membre sera doncnécessaire.En terme de fonctionnalité, si nous souhaitons proposer un abonnement newsletter aux membres, nous aurons besoin d'1 table newsletter repertoriant les membres abonnés.<br>1 table = 1 sujet</p>
+			</div><!-- /col -->
+		</div><!-- /row -->
+
+		<!-- new row -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-primary">3- Les colonnes ou les champs</h2>
+				<p>Chaque table possède généralement plusieurs champs (aussi appelés colonnes). Les colonnes / champs représentent des caractéristiques relatives au sujet (la table). </p>
+			</div><!-- /col -->
+			<div class="col-sm-12">
+				<p>Pour savoir, quelle colonne mettre dans quelle table, il faut se poser la question suivante : qu'est-ce qui pourrait décrire mon sujet ? quelles sont les informations sur mon sujet ? <br>Par exemple, la table membre aura les champs : pseudo, mot de passe, nom, prenom, adresse, etc.</p>
+			</div><!-- /col -->
+		</div><!-- /row -->
+
+		<!-- new row -->
+		<div class="row">
+			<h2 class="text-primary">4- Les types de données</h2>
+            <div class="col-sm-12">
+				<p>3 grandes catégories de champs ressortent : les types numériques, chaînes de caractères (texte) et temporels (dates).</p>
+				<table class="table table-striped table-hover">
+					<thead>
+					  <tr>
+						<th scope="col">Type de champ</th>
+						<th scope="col">Description</th>
+						<th scope="col">Contexte</th>
+					  </tr>
+					</thead>
+					<tbody>
+					  <tr>
+						<th scope="row">VARCHAR</th>
+						<td>Chaîne (jusqu'à 255 caractères)</td>
+						<td>Pour enregistrer un pseudo, un email, le titre d'un produit ou d'un article de blog</td>
+					  </tr>
+					  <tr>
+						<th scope="row">TEXT</th>
+						<td>Chaîne de caractère (illimité)</td>
+						<td>Pour un contenu textuel long, un article de blog</td>
+					  </tr>
+					  <tr>
+						<th scope="row">INT</th>
+						<td>Numérique</td>
+						<td>Pour un identifiant, un prix, un code un code postal le nombre de produits en stocks etc.</td>
+					  </tr>
+					  <tr>
+						<th scope="row">DATE</th>
+						<td>Date</td>
+						<td>Pour la date d'un enregistrement (une inscription), la date d'une commande etc.</td>
+					  </tr>
+					  <tr>
+						<th scope="row">ENUM</th>
+						<td>Une liste (une énumération)</td>
+						<td>Pour proposer une liste de termes ex. : "Madame", "Monsieur"</td>
+					  </tr>
+					</tbody>
+				  </table>
+			</div><!-- /col -->
+		</div><!-- /row -->	
+		<!-- new row -->
+		<div class="row mt-2">
+			<h2 class="text-primary">5- Types de données, PK, AI etc.</h2>
+			<div class="col-sm-12 mt-3">
+				<h3 class="text-danger">5-Les identifiants (Clé Primaire - PK Primary Key)</h3>
+				<ul>
+                    <li>Les identifiants sont des champs (colonnes) un peu particuliers car ils ne décrivent pas le sujet (ce n'est pas une des caractéristiques du sujet) mais ce sont des colonnes (champs) systématiquement présent dans chaque table et ce en première position.</li>
+                    <li>Chaque table possède une colonne (champ) identifiant. Nous appellerons cela une clé primaire (PK).</li>
+                    <li>Par exemple, nous pourrons l'appeler "id" ou encore "idProduit" pour la table produit, et "idMembre" pour la table membre.</li>
+                </ul>
+			</div><!-- /col -->
+			<!-- new col -->
+			<div class="col-sm-12">
+				<h3 class="text-danger">5-Auto_Increment</h3>
+                <p>Auto_Increment est une option permettant de générer un numéro unique dans une colonne (champ) de type clé primaire (identifiant).<br>
+                    Par conséquent, retenez bien que le 1er champ de chaque table sera systématiquement un "id" qui sera PK (Primary Key) et AI (Auto_Increment).</p>
+
+			</div><!-- /col -->
+			<!-- new col -->
+			<div class="col-sm-12">
+				<h3 class="text-danger">5-NULL / NOT NULL</h3>
+				<p>Dans chaque champ, nous pourrons indiquer si nous acceptons les valeurs NULL ou non (NOT NULL).<br>NULL est un type de valeur en informatique évitant de laisser un champ vide si nous n'avons pas d'informations à y déposer.</p>
+			</div><!-- /col -->
+			<!-- NEW col -->
+			<div class="col-sm-12">
+				<h3 class="text-danger">5-Les relations</h3>
+				<p>Il arrive parfois que les sujets interagissent entre eux.</p>
+                <ul>
+                    <li>Exemple : 1 membre commande 1 produit (ou 1 produit est commandé par 1 membre), nous devrons enregistrer l'information dans 1 table commande.</li>
+                    <li>Autre exemple : 1 conducteur conduit 1 véhicule (ou 1 véhicule est conduit par 1 conducteur). il nous faudra une table permettant de préciser quel
+                    conducteur va avec quel véhicule.
+                </ul>
+			</div><!-- /col -->
+		</div><!-- /row -->
+		<!-- new row -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-primary">6- Les cardinalités</h2>
+			</div><!-- /col -->
+			<!-- new col -->
+			<div class="col-sm-12 col-md-5">
+				<p>Les cardinalités permettent de connaitre le chiffre minimum et maximum d'enregistrement pour une relation.</p>
+				<p>Dans notre exemple, un homme est le fils d'une femme et d'une seule (minimum = 1, maximum = 1). En revanche, une femme peut avoir plusieurs enfants ou aucun (minimum = 0, maximum = n).</p><p>Autre exemple : 1 livre possède forcément 1 auteur et qu'1 seul. Relation (1,1). Minimum 1 auteur, Maximum 1 auteur. 1 auteur peut avoir écrit plusieurs livre (ou aucun). Relation (0,n). Minimum 0 livre, Maximum N livres</p>
+			</div><!-- /col -->
+			<!-- new col -->
+			<div class="col-sm-12 col-md-7">
+				<img src="img/cardinalites.jpg" alt="cardinalities" class="img-fluid">
+				<figcaption>Les cardinalités</figcaption>
+			</div><!-- /col -->
+		</div><!-- /row -->
+		<!-- new row -->
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-primary">7- Table de jointure</h2>
+                <p>Une table de jointure permet de faire le lien entre 2 tables.</p>
+				
+			</div><!-- /col -->
+			<div class="col-sm-12  col-md-6">
+				<p>Par exemple, prenons le cas d'une société taxis qui posséderait des conducteurs (table conducteur) et des véhicules (table véhicule).</p>
+				<ul>
+					<li>1 conducteur peut conduire 0 ou plusieurs véhicules.</li>
+					<li>1 véhicule peut être conduit par 0 ou plusieurs conducteur.</li>
+				</ul>
+				<p>Comment savoir quel conducteur conduit quel véhicule ? ou dans l'autre sens : quel véhicule est conduit par quel conducteur ?</p>
+				<p>Avec cette table de jointure, nous savons qu'Alexandre conduit à la fois la mercedes et la bmw tandis que julien conduit uniquement la bmw.</p>
+				
+			</div><!-- /col -->
+			<div class="col-sm-12 col-md-6">
+				<img src="img/jointures.jpg" alt="table de jointure">
+			</div><!-- /col -->
+		</div><!-- /row -->
+		<div class="row">
+			<div class="col-sm-12 ">
+				<h2 class="text-primary">8- Clef étrangère, Foreign Key FK</h2>
+			</div><!-- /col -->
+			<div class="col-sm-12 ">
+				<p>Les clés étrangères sont des champs forcément clé primaire dans leur table d'origine, se retrouvant également présent dans une table extérieure.<br>Un champ clé étrangère (liste numérotée) placé à l'extérieur de leur table d'origine permet de faire la relation avec un autre sujet.</p></div><!-- /col -->
+				<div class="col-sm-12">
+					<img src="img/clef_etrangere_1.jpg" alt="">
+				</div><!-- /col -->
+				<div class="col-sm-12">
+					<img src="img/clef_etrangere_2.jpg" alt="">
+				</div><!-- /col -->
+		</div><!--/row-->
+		<!-- new row -->
+
+		<div class="row">
+			<div class="col-sm-12">
+                <h2 class="text-primary">9- Les Enregistrements</h2>
+					<p>Chaque enregistrement représente 1 ligne dans la table de la base de données</p>
+            </div>
+			<div class="col-sm-12">
+                <h2 class="text-primary">10- A. Les Requêtes</h2>
+					<p>Une requête permet de poser une question afin d'obtenir une réponse, ou encore de donner un ordre.</p>
+					<p>Nous terminerons toutes nos requêtes par un point-virgule pour que MySQL sache que nous avons terminé d'écrire et qu'il doit exécuter notre demande.</p>
+            </div>
+            <div class="col-sm-12">
+				<h2>10- B. Types de requêtes</h2>
+					<p>IL existe 4 types de requêtes</p>
+					<ul>
+						<li>Sélection : <code>SELECT</code> - requête question/réponse, nous faisons une demande via une question et obtenons une réponse.</li>
+						<li>Insertion : <code>INSERT</code> - requête d'action, impact sur les données</li>
+						<li>Modification : <code>UPDATE</code> - requête d'action, impact sur les données</li>
+						<li>Suppression : <code>DELETE </code> - requête d'action, impact sur les données</li>
+					</ul>
+            </div><!-- /col -->
+		</div><!-- /row -->
+
+    </div><!--container-->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

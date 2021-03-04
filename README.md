@@ -1,2 +1,2 @@
 # coursSQL
-Cours sur MysQL et PHP
+Cours sur SQL et PHP

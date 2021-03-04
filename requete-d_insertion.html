@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link active" href="requete-d_insertion.html">insert</a>
+					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Menu 3 - Disabled</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <div class="container bg-light">
+        <!-- ========================================= -->
+			<!-- Carousel -->
+			<!-- ========================================= -->
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                </div><!-- / col -->
+                <div class="col-sm-12">
+                    <h3>La requête INSERT</h3>
+                    
+                </div><!-- / col -->
+                <div class="col-sm-12">
+                    <ul>
+                        <li><code>INSERT INTO employes (id_employes, prenom,nom, sexe, service, date_embauche, salaire) VALUES(alexis, richy, 'm','informatique', '2011-12-28', 1800);</code></li>
+                        <li>Insérer un enregistrement : 2nd méthode <br> <code> INSERT INTO employes VALUES (NULL , 'Jean', 'Richy','m','informatique','2012-01-28', 1800);</code> <br> NULL nous permet de laisser le champs id_employes se remplir seul car il est auto incrémenté</li>
+                    </ul>
+                    
+                </div><!-- /col -->
+            </div><!-- /row -->
+		
+    </div><!--container-->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL cours - Requêtes imbriquées</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link" href="requete-d_insertion.html">insert</a>
+					<a class="nav-link" href="requete-update.html">update & DELETE</a>
+                    <a class="nav-link active" href="lesjointure-sql.html">jointure</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <div class="container bg-light">
+        <!-- ========================================= -->
+			<!-- Carousel -->
+			<!-- ========================================= -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="text-center">Cours SQL- Les jointures MySQL</h1>
+                </div><!-- /col -->
+            </div><!-- /row-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Les jointures</h2>
+                    <p>Les jointures premettent, comme les requêtes imbriquées, d'effectuer des requêtes sur plusieurs tables. Il faut bien sûr un champ commun. L'avantage des jointures est que l'on peut obtenir le résultat final des colonnes issu de plusieurs tables différentes.</p>
+                    <ul>
+                        <li><code>SELECT</code> : Liste des champs que je souhaite afficher dans mon résultat</li>
+                        <li><code>FROM</code>: De quelle tables cela provient-il ?</li>
+                        <li><code>WHERE</code>: Condition de jointure pour assurer le croisement des données</li>
+                        <li><code>AND / OR</code>: autre condition éventuelle</li>
+                    </ul>
+                    <ul>
+                        <li>Dans la BDD bibliotheque, Afficher les dates auxquelles Guillaume s'est rendu à la bibliothèque pour emprunter ou rendre un livre, on a besoin de 3 colonnes : prenom, date_sortie, date_rendu : <code>SELECT abonne.prenom, emprunt.date_sortie, emprunt.date_rendu FROM abonne, emprunt WHERE abonne.id_abonne = emprunt.id_abonne AND abonne.prenom = 'Guillaume';SELECT abonne.prenom, emprunt.date_sortie, emprunt.date_rendu FROM abonne, emprunt WHERE abonne.id_abonne = emprunt.id_abonne AND abonne.prenom = 'Guillaume';</code></li>
+                        <li>La même requête avec des préfixes <code>SELECT a.prenom, e.date_sortie, e.date_rendu FROM abonne a, emprunt e WHERE a.id_abonne=e.id_abonne AND a.prenom = 'guillaume';</code></li>
+                        <li>Qui emprunter une vie en 2014</li>
+                        <li>La même en requête imbriquée : <code>SELECT prenom FROM abonne WHERE id_abonne IN ( SELECT id_abonne FROM emprunt WHERE date_sortie LIKE '2014%' AND id_livre = (SELECT id_livre FROM livre WHERE titre='Une vie'));</code></li>
+                        <li>Afficher le nombre de livres empruntés par chaque abonné : <code>SELECT a.prenom, COUNT(e.id_livre) AS 'nombre de livres empruntés' FROM abonne a, emprunt e WHERE a.id_abonne = e.id_abonne GROUP BY e.id_abonne;</code></li>
+                        <li>...</li>
+                        <li>Qui a emprunté quoi ? et quand ? : (indice Qui = prénom, quoi = titre du livre, quand date de sortie ; 3 colonnes) : <code>SELECT </code></li>
+                    </ul>
+                    <hr>
+                    <ul>
+                        <li>Ajout d'un abonné : <code>INSERT INTO abonne (prenom) VALUES ('Alex');</code></li>
+                        <li>Affiche le prénom des abonnés avec l'id ou le numéro des livres qu'ils ont emprunt</li>
+                    </ul>
+                </div><!--  -->
+            </div><!--  -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3>Les jointures externe</h3>
+                    <ul>
+                        <li>La même avec une jointure externe : <code> SELECT a.prenom, e.id_livre FROM abonne a LEFT JOIN emprunt e ON a.id_abonne = e.id_abonne;</code> <br><code></code></li>
+                        <li>La même avec une jointure externe, qui sera plus complète  : <code>SELECT abonne.prenom, emprunt.id_livre<br>
+                        FROM abonne LEFT JOIN emprunt<br>
+                        ON abonne.id_abonne = emprunt.id_abonne</code></li>
+                        <li> FROM LEFT JOIN : la table placée à gauche (dans notre exemple la table abonne) de l'expression LEFT JOIN  sera la table dont tous les résultats seront rapatriés (sans correspondance exigée dans l'autre table, ex. il n'y a pas l'id d'Alex dans la table emprunt) : nous savons qu'Alex fera parti des résultat même s'il n'a pas emprunté de livre. ON : la condition se fait pas le mot-clef ON (et non plus WHERE) dans le cadre d'une requête externe de type LEFT JOIN ou RIGHT JOIN ...</li>
+                    </ul>
+                </div><!-- /col -->
+            </div><!-- /row -->
+
+		
+    </div><!--container-->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

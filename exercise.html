@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link" href="requete-d_insertion.html">insert</a>
+					<a class="nav-link active" href="requete-update.html">update & DELETE</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <main>
+        <section class="container bg-light">
+            <div class="row">
+                <div class="col-sm-12">
+
+                </div>
+                <div class="col-sm-12">
+                    <ol>
+                        <li>Afficher la profession de l'employé 547 : <code>SELECT service FROM employes WHERE id_employes=547;</code></li>
+                        <li>Afficher la date d'embauche d'Amandine :  <code>SELECT prenom, date_embauche FROM employes WHERE prenom='Amandine';</code></li>
+                        <li>Afficher le nombre de commerciaux :  <code>SELECT COUNT(*) FROM employes WHERE service ='commercial';</code><code></code></li>
+                        <li>Afficher le coût des commerciaux sur 1 année : <code>SELECT COUNT(*) AS 'nbr_commerciaux' FROM employes WHERE service ='commercial';</code> avec alias</li>
+                        <li>Afficher le salaire moyen par service : <code>SELECT AVG(salaire) AS 'salaire_moyen_par_service' FROM employes GROUP BY service;</code> on peut aussi l'amélioré comme ici : <br><code>SELECT service,ROUND ( AVG(salaire)) AS 'salaire_moyen_par_service' FROM employes GROUP BY service ORDER BY salaire DESC;</code><br> <code>SELECT service, AVG(salaire) AS 'cout_moyen' FROM employes GROUP BY service;</code> ou encore <br> grouper les serives par ordre alphabétique<code> SELECT service,ROUND ( AVG(salaire)) AS 'salaire_moyen_par_service' FROM employes GROUP BY service ASC;</code></li>
+                        <li>Afficher le nombre de recrutements sur l'année 2010 : <code>SELECT COUNT(date_embauche) AS nombre_d_emauche FROM employes WHERE date_embauche BETWEEN '2010-01-01' AND '2010-12-31';</code> <br><code>SELECT COUNT(*) as 'nb de recrutement' FROM employes WHERE date_embauche >= '2010-01-01' AND date_embauche <= '2010-12-31';</code> ou encore <br><code>SELECT COUNT(*) AS 'nbr de recrutement 2010' FROM employes WHERE date_embauche LIKE '2010%';</code></li>
+                        <li>Augmenter le salaire pour chaque employé de 100 € : <code>UPDATE employes SET salaire=salaire+100;</code></li>
+                        <li>Afficher le nombre de services (différents) : <code>SELECT DISTINCT service FROM employes;</code></li>
+                        <li>Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé : <code>SELECT * FROM employes WHERE service ='commercial' AND salaire=(SELECT MAX(salaire) FROM employes WHERE service='commercial');</code></li>
+                        <li>Afficher l'employé ayant été embauché en dernier : <code> SELECT date_embauche,nom, prenom, salaire,service, sexe FROM employes WHERE date_embauche = (SELECT MAX(date_embauche) FROM employes);</code></li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- /section -->
+    </main><!-- /main -->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

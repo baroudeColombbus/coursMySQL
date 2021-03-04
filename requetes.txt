@@ -1,0 +1,9 @@
+
+SELECT COUNT(*) AS nombre_de_femme FROM employes WHERE sexe='f';
+
+SELECT COUNT(*) FROM employes WHERE sexe='f';
+
+SELECT * FROM employes WHERE sexe = 'f';
+
+SELECT nom, prenom, sexe FROM employes WHERE date_embauche BETWEEN YEAR('2010-01-01') AND YEAR(CURDATE()); 
+

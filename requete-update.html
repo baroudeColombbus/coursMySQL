@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours</title>
+	<!-- bootsrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- style -->
+	<link rel="stylesheet" href="css/custom_style.css">
+</head>
+<!-- container-fluid -->
+<body>
+	<div class="container-fluid">
+			<!-- ========================================= -->
+	<!-- navigation -->
+	<!-- ========================================= -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">cours SQL</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link " aria-current="page" href="index.php">Accueil</a>
+					<a class="nav-link" href="requetes.html">requete</a>
+					<a class="nav-link" href="requete-d_insertion.html">insert</a>
+					<a class="nav-link active" href="requete-update.html">update & DELETE</a>
+				</div>
+			</div>
+	</nav>
+	</div><!-- /container -->
+
+	<!-- container -->
+    <div class="container bg-light">
+        <!-- ========================================= -->
+			<!-- Carousel -->
+			<!-- ========================================= -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Les requêtes de modification avec UPDATE</h2>
+                    
+                </div><!-- / col -->
+                <div class="col-sm-12">
+                    <h3>La requête UPDATE</h3>
+                    
+                </div><!-- / col -->
+                <div class="col-sm-12">
+                    <ul>
+                        <li>Augmenter le salaire d'un employé : <code>UPDATE SET salaire = 1871 WHERE id_employes = 990;</code> <br> Il est recommendé de modifier un enregistrement en ciblant son id, l'id étant unique</li>
+                    </ul>
+                </div><!-- /col -->
+                <div class="col-sm-12">
+                    <h3>La requête DELETE</h3>
+                </div><!-- /col -->
+                <div class="col-sm-12">
+                    <ul>
+                        <li>Supprimer un enregistrer; <code>DELETE FROM employes WHERE id_employes = 388;</code></li>
+                        <li>Supprimer plusieurs enregestritements : <code> DELETE FROM employes WHERE service = 'informatique';</code></li>
+                    </ul>
+
+                </div><!-- /col -->
+            </div><!-- /row -->
+		
+    </div><!--container-->
+
+        <!-- script bootstrap/popper/jquery dependencies -->
+    <script src="jquery/jquery-3.5.1.js"></script>
+    <script src="jquery/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
