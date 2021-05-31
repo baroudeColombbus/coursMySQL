@@ -506,8 +506,6 @@ GROUP BY logement.prix;
 
 
 
-
-
 ---Affichez le prénom et la ville où se trouve le logement de chaque propriétaire 
 SELECT personne.prenom, logement.ville
 FROM  personne,logement, logement_personne
